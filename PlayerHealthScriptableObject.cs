@@ -5,7 +5,7 @@ using System.Collections;
 
 public class PlayerHealthScriptableObject : ScriptableObject {
     
-    public float PlayerMaxHealth;
-    public float PlayerHealth;
+    public float playerMaxHealth;
+    public float playerHealth;
 
 }
