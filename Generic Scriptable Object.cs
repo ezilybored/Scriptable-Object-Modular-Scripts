@@ -2,9 +2,12 @@ using UnityEngine;
 using System.Collections;
 
 //This is the bit that replaces the code found in MakeScriptableObject
-[CreateAssetMenu(fileName = "Data", menuName = "Inventory/List", order = 1)]
-//				Class name				Derives from ScriptableObject
-public class MyScriptableObjectClass : ScriptableObject {
+[CreateAssetMenu(fileName = "Filename goes here", menuName = "This is the name of the menu the SO is found under", order = 1)]
+//		Class name		Derives from ScriptableObject
+public class MyScriptableObjectClassName : ScriptableObject {
+
+	//The data or functions for the SO go in here
+	//E.g
 	//A string
 	public string objectName = "New MyScriptableObject";
 	//Should the colour be picked randomly?
