@@ -4,7 +4,7 @@ using System.Collections;
 //This is the bit that replaces the code found in MakeScriptableObject
 [CreateAssetMenu(fileName = "Filename goes here", menuName = "This is the name of the menu the SO is found under", order = 1)]
 //		Class name		Derives from ScriptableObject
-public class MyScriptableObjectClassName : ScriptableObject {
+public class MyGenericScriptableObjectClassName : ScriptableObject {
 
 	//The data or functions for the SO go in here
 	//E.g
