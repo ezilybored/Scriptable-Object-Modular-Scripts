@@ -5,10 +5,10 @@ using System.Collections;
 
 public class NPCItemTrackerScriptableObject : ScriptableObject {
     
-    public Item itemOne;
+    public InventoryItemScriptableObject itemOne;
     
-    public Item itemTwo;
+    public InventoryItemScriptableObject itemTwo;
     
-    public Item itemThree;
+    public InventoryItemScriptableObject itemThree;
 
 }
