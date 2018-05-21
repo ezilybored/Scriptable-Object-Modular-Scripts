@@ -1,0 +1,15 @@
+using UnityEngine;
+using System.Collections;
+
+[CreateAssetMenu(fileName = "PlayerHealth", menuName = "Scriptable Objects", order = 1)]
+
+public class QuestTrackerScriptableObject : ScriptableObject {
+    
+  //Place a series of booleans to track the Quest items here.
+  //Assign to NPC
+  //Assign to player when quest is opened
+  //As player completes quest steps they are marked here.
+  //When quest is complete both player and NPC know this
+
+
+}
