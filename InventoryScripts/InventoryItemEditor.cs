@@ -118,31 +118,46 @@ public class InventoryItemEditor : EditorWindow {
 					//decrease the value of viewIndex by 1
 					viewIndex --;
 			}
+			//Insert a space in the current layout group. The space is 5 pixels
 			GUILayout.Space(5);
+			//if the button clicked is "Next", do not expand the window
 			if (GUILayout.Button("Next", GUILayout.ExpandWidth(false))) 
 			{
+				//If the viewIndex variable is less than the number of items in the InventoryList
 				if (viewIndex < inventoryItemList.itemList.Count) 
 				{
+					//Increment the viewIndex by +1
 					viewIndex ++;
 				}
 			}
 
+			//Insert a space in the current layout group. The space is 60 pixels 
 			GUILayout.Space(60);
 
+			//If the button clicked is "Add Item", do not expand window
 			if (GUILayout.Button("Add Item", GUILayout.ExpandWidth(false))) 
 			{
+				//Run the method AddItem
 				AddItem();
 			}
+			//If the button clicked is "Delete Item", do not expand window
 			if (GUILayout.Button("Delete Item", GUILayout.ExpandWidth(false))) 
 			{
+				//Run the method DeleteItem then decrement viewIndex by -1
 				DeleteItem(viewIndex - 1);
 			}
-
+			//Ends the Horizontal group
 			GUILayout.EndHorizontal ();
+			
+			//If the inventoryItemList.itemList is null
+			//Is the number of inventoryItemLists 0?
 			if (inventoryItemList.itemList == null)
 				Debug.Log("wtf");
+			
+			//If the inventoryItemList.itemList is more than 0
 			if (inventoryItemList.itemList.Count > 0) 
 			{
+				//Begin a Horizontal control group.
 				GUILayout.BeginHorizontal ();
 				viewIndex = Mathf.Clamp (EditorGUILayout.IntField ("Current Item", viewIndex, GUILayout.ExpandWidth(false)), 1, inventoryItemList.itemList.Count);
 				//Mathf.Clamp (viewIndex, 1, inventoryItemList.itemList.Count);
