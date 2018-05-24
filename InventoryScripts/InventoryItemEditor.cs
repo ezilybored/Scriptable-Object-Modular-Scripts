@@ -5,22 +5,30 @@ using System.Collections.Generic;
 
 public class InventoryItemEditor : EditorWindow {
 
+	//references the Inventory
 	public InventoryItemList inventoryItemList;
-	//Added by me to create a new Inventory item scripatble object when an item is added
+	//Added by me so that I can create a new Inventory item scripatble object when an item is added
 	public InventoryItem inventoryItem;
 	private int viewIndex = 1;
 
+	//Allows the creation of a new Inventory Item editor for the inspector
 	[MenuItem ("Window/Inventory Item Editor %#e")]
 	static void  Init () 
 	{
+		//Creates and gets a new floating window oftype InventoryItemEditor
 		EditorWindow.GetWindow (typeof (InventoryItemEditor));
 	}
 
 	void  OnEnable () {
 		//Finding the object path
+		//Does the Editor have the key "ObjectPath"
 		if(EditorPrefs.HasKey("ObjectPath")) 
 		{
+			//Sets a string called objectPath as the return from EditorPrefs.GetString 
+			//which should be the same as the key "ObjectPath"
 			string objectPath = EditorPrefs.GetString("ObjectPath");
+			//Returns the first asset object of type InventoryItemList at given path objectPath
+			//sets as inventoryItemList
 			inventoryItemList = AssetDatabase.LoadAssetAtPath (objectPath, typeof(InventoryItemList)) as InventoryItemList;
 		}
 
