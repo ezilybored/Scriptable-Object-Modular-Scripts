@@ -61,41 +61,61 @@ public class InventoryItemEditor : EditorWindow {
 			//Runs the method OpenItemList defined below
 			OpenItemList();
 		}
+		//If the button pressed is "New Item List"
 		if (GUILayout.Button("New Item List")) 
 		{
+			//Brings the project window to the front and focuses it.
 			EditorUtility.FocusProjectWindow();
+			//Returns the actual object selection. Sets it as inventoryItemList.
+			//Essentially selects the currently active Inventory list
 			Selection.activeObject = inventoryItemList;
 		}
 		
 		//Ends the Horizontal group
 		GUILayout.EndHorizontal ();
 
+		//If the inventoryItemList is null
 		if (inventoryItemList == null) 
 		{
+			//Begin a Horizontal control group.
 			GUILayout.BeginHorizontal ();
+			//Creates a space in the GUI 10 pixels big
 			GUILayout.Space(10);
+			//If the button pressed is "Show Item List"
+			//GUILayout.ExpandWidth(false) limits the expansion of the editor window
 			if (GUILayout.Button("Create New Item List", GUILayout.ExpandWidth(false))) 
 			{
+				//Runs the method CreateNewItemList described below
 				CreateNewItemList();
 			}
+			//If the button pressed is "Open Existing Item List"
 			if (GUILayout.Button("Open Existing Item List", GUILayout.ExpandWidth(false))) 
 			{
+				//Runs the method OpenItemList described below
 				OpenItemList();
 			}
+			//Ends the Horizontal group
 			GUILayout.EndHorizontal ();
 		}
 
+		//Insert a space in the current layout group. The space is 20 pixels big
 		GUILayout.Space(20);
 
+		//If the inventoryItemList is not null
 		if (inventoryItemList != null) 
 		{
+			//Begin a Horizontal control group.
 			GUILayout.BeginHorizontal ();
 
+			//Insert a space in the current layout group. The space is 10 pixels big
 			GUILayout.Space(10);
 
+			//If the button pressed is "Prev"
 			if (GUILayout.Button("Prev", GUILayout.ExpandWidth(false))) 
 			{
+				//If the viewIndex variable is bigger than 1
 				if (viewIndex > 1)
+					//decrease the value of viewIndex by 1
 					viewIndex --;
 			}
 			GUILayout.Space(5);
