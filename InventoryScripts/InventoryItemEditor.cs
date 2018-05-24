@@ -34,18 +34,31 @@ public class InventoryItemEditor : EditorWindow {
 
 	}
 
+	//OnGUI is called for rendering and handling GUI events. Can be called several times in a script
 	void  OnGUI () {
+		//Begin a Horizontal control group.
+		//All controls rendered inside this element will be placed horizontally next to each other.
 		GUILayout.BeginHorizontal ();
+		//Labels have no user interaction, do not catch mouse clicks and are always rendered in normal style.
+		//This is a label description shown when the label is hovered over. It is bold
 		GUILayout.Label ("Inventory Item Editor", EditorStyles.boldLabel);
-		if (inventoryItemList != null) {
+		//If there is a InventoryItemList (not null)
+		if (inventoryItemList != null) 
+		{
+			//If the button pressed is "Show Item List"
 			if (GUILayout.Button("Show Item List")) 
 			{
+				//Brings the project window to the front and focuses it.
 				EditorUtility.FocusProjectWindow();
+				//Returns the actual object selection. Sets it as inventoryItemList
+				//Essentially selects the currently active Inventory list
 				Selection.activeObject = inventoryItemList;
 			}
 		}
+		//If the button pressed is "Show Item List"
 		if (GUILayout.Button("Open Item List")) 
 		{
+			//Runs the method OpenItemList defined below
 			OpenItemList();
 		}
 		if (GUILayout.Button("New Item List")) 
@@ -53,6 +66,8 @@ public class InventoryItemEditor : EditorWindow {
 			EditorUtility.FocusProjectWindow();
 			Selection.activeObject = inventoryItemList;
 		}
+		
+		//Ends the Horizontal group
 		GUILayout.EndHorizontal ();
 
 		if (inventoryItemList == null) 
