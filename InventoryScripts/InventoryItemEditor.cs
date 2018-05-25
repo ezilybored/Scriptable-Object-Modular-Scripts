@@ -248,24 +248,39 @@ public class InventoryItemEditor : EditorWindow {
 		viewIndex = 1;
 		//Creates a new inventoryItemList Scriptable Object
 		inventoryItemList = CreateInventoryItemList.Create();
+		//if there is an inventoryItemList
 		if (inventoryItemList) 
 		{
+			//set the inventoryItemList as a new List of InventoryItem Scriptable Objects
 			inventoryItemList.itemList = new List<InventoryItem>();
+			//sets a string called relPath using GetAssetPath
 			string relPath = AssetDatabase.GetAssetPath(inventoryItemList);
+			//Sets the string ObjectPath to be the same as the string relPath
+			//This sets the path to the Inventory so that it can be found again
 			EditorPrefs.SetString("ObjectPath", relPath);
 		}
 	}
 
 	void OpenItemList () 
 	{
+		//sets a string called absPath using the return from OpenFilePanel
 		string absPath = EditorUtility.OpenFilePanel ("Select Inventory Item List", "", "");
+		
+		//Checks to see if the path to the Inventory is the same as the path to the game data folder
+		//Application.dataPath is the path to the game data folder
 		if (absPath.StartsWith(Application.dataPath)) 
 		{
+			//sets the string relPath to be path to the Inventory
 			string relPath = absPath.Substring(Application.dataPath.Length - "Assets".Length);
+			//sets inventoryItemList as the InventoryItemList at the end of the path
 			inventoryItemList = AssetDatabase.LoadAssetAtPath (relPath, typeof(InventoryItemList)) as InventoryItemList;
+			//If there is no InventoryItemList there
 			if (inventoryItemList.itemList == null)
+				//Create a new InventoryItemList
 				inventoryItemList.itemList = new List<InventoryItem>();
+			//If there is an inventoryItemList
 			if (inventoryItemList) {
+				//Set ObjectPath to relPath
 				EditorPrefs.SetString("ObjectPath", relPath);
 			}
 		}
