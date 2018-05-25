@@ -160,43 +160,79 @@ public class InventoryItemEditor : EditorWindow {
 			{
 				//Begin a Horizontal control group.
 				GUILayout.BeginHorizontal ();
-				//Mathf.Clamp clamps between a maximum and minimum value
-				//Complete this
+				//Mathf.Clamp clamps between a maximum and minimum value (value, min, max)
+				//EditorGUILayout.IntField ("Current Item", viewIndex, GUILayout.ExpandWidth(false)) gives the value to clamp
+				//EditorGUILayout.IntField makes a text field that allows the entry of integers
+				//"Current Item" is the label, viewIndex is the value, GUILayout.ExpandWidth(false)) limits the expansion of the box
+				//1 is the minimum value for the clamp
+				//inventoryItemList.itemList.Count is the maximum. Limits it within the value of the number of Items in the Inventory
 				viewIndex = Mathf.Clamp (EditorGUILayout.IntField ("Current Item", viewIndex, GUILayout.ExpandWidth(false)), 1, inventoryItemList.itemList.Count);
-				//Mathf.Clamp (viewIndex, 1, inventoryItemList.itemList.Count);
+				//Mathf.Clamp (viewIndex, 1, inventoryItemList.itemList.Count); Not sure why this line is commented out
+				//EditorGUILayout.LabelField makes a label field
+				//Label field contains "of" then the size of the inventoryItemList the "items"
+				//Essentially states the size of the Inventory
 				EditorGUILayout.LabelField ("of   " +  inventoryItemList.itemList.Count.ToString() + "  items", "", GUILayout.ExpandWidth(false));
+				//Ends the horizontal group
 				GUILayout.EndHorizontal ();
-
+				
+				
+				//Creates a box to enter the name of the Item
 				inventoryItemList.itemList[viewIndex-1].itemName = EditorGUILayout.TextField ("Item Name", inventoryItemList.itemList[viewIndex-1].itemName as string);
+				//Creates a box to add an icon for the Item
 				inventoryItemList.itemList[viewIndex-1].itemIcon = EditorGUILayout.ObjectField ("Item Icon", inventoryItemList.itemList[viewIndex-1].itemIcon, typeof (Texture2D), false) as Texture2D;
+				//Creates a box to enter a rigidbody game object for the Item
 				inventoryItemList.itemList[viewIndex-1].itemObject = EditorGUILayout.ObjectField ("Item Object", inventoryItemList.itemList[viewIndex-1].itemObject, typeof (Rigidbody), false) as Rigidbody;
-
+				
+				//These can be added to and or edited depending on the fields that the Item requires
+				
+				//Creates a space of 20 pixels
 				GUILayout.Space(10);
 
+				//Begins a horizontal group
 				GUILayout.BeginHorizontal ();
+				//Creates a check box for Unique object property
 				inventoryItemList.itemList[viewIndex-1].isUnique = (bool)EditorGUILayout.Toggle("Unique", inventoryItemList.itemList[viewIndex-1].isUnique, GUILayout.ExpandWidth(false));
+				//Creates a check box for Indestructible object property
 				inventoryItemList.itemList[viewIndex-1].isIndestructible = (bool)EditorGUILayout.Toggle("Indestructable", inventoryItemList.itemList[viewIndex-1].isIndestructible,  GUILayout.ExpandWidth(false));
+				//Creates a check box for QuestItem object property
 				inventoryItemList.itemList[viewIndex-1].isQuestItem = (bool)EditorGUILayout.Toggle("QuestItem", inventoryItemList.itemList[viewIndex-1].isQuestItem,  GUILayout.ExpandWidth(false));
+				//Ends the horizontal group
 				GUILayout.EndHorizontal ();
 
+				//These can be added to and or edited depending on the fields that the Item requires
+				
+				//Creates a space of 10 pixels
 				GUILayout.Space(10);
 
+				//Begins a horizontal group
 				GUILayout.BeginHorizontal ();
+				//Creates a check box for stackable object property
 				inventoryItemList.itemList[viewIndex-1].isStackable = (bool)EditorGUILayout.Toggle("Stackable ", inventoryItemList.itemList[viewIndex-1].isStackable , GUILayout.ExpandWidth(false));
+				//Creates a check box for Destory on use object property
 				inventoryItemList.itemList[viewIndex-1].destroyOnUse = (bool)EditorGUILayout.Toggle("Destroy On Use", inventoryItemList.itemList[viewIndex-1].destroyOnUse,  GUILayout.ExpandWidth(false));
+				//Creates a check box for Encumberance object property
 				inventoryItemList.itemList[viewIndex-1].encumbranceValue = EditorGUILayout.FloatField("Encumberance", inventoryItemList.itemList[viewIndex-1].encumbranceValue,  GUILayout.ExpandWidth(false));
+				//ends the horizontal group
 				GUILayout.EndHorizontal ();
 
+				//Creates a space of 10 pixels
 				GUILayout.Space(10);
 
 			} 
+			//If there are no Items in the Inventory
 			else 
 			{
+				//Creates a lable stating that the Inventory is empty
 				GUILayout.Label ("This Inventory List is Empty.");
 			}
 		}
+		//If anything about the Inventory is changed
+		//GUI.changed Returns true if any controls changed the value of the input data
 		if (GUI.changed) 
 		{
+			//EditorUtility.SetDirty : Marks target object as dirty. (Only suitable for non-scene objects).
+			//Item to be marked is inventoryItemList
+			//Dirty is data that has not been updated and needs to be updated
 			EditorUtility.SetDirty(inventoryItemList);
 		}
 	}
