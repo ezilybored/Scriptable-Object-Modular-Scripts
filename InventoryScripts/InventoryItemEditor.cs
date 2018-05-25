@@ -155,10 +155,13 @@ public class InventoryItemEditor : EditorWindow {
 				Debug.Log("wtf");
 			
 			//If the inventoryItemList.itemList is more than 0
+			//Essentially, if there is an Inventory already created
 			if (inventoryItemList.itemList.Count > 0) 
 			{
 				//Begin a Horizontal control group.
 				GUILayout.BeginHorizontal ();
+				//Mathf.Clamp clamps between a maximum and minimum value
+				//Complete this
 				viewIndex = Mathf.Clamp (EditorGUILayout.IntField ("Current Item", viewIndex, GUILayout.ExpandWidth(false)), 1, inventoryItemList.itemList.Count);
 				//Mathf.Clamp (viewIndex, 1, inventoryItemList.itemList.Count);
 				EditorGUILayout.LabelField ("of   " +  inventoryItemList.itemList.Count.ToString() + "  items", "", GUILayout.ExpandWidth(false));
