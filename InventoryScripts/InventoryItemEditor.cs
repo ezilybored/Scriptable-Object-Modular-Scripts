@@ -9,6 +9,7 @@ public class InventoryItemEditor : EditorWindow {
 	public InventoryItemList inventoryItemList;
 	//Added by me so that I can create a new Inventory item scripatble object when an item is added
 	public InventoryItem inventoryItem;
+	//This int tracks which Inventory you are looking at
 	private int viewIndex = 1;
 
 	//Allows the creation of a new Inventory Item editor for the inspector
@@ -242,7 +243,10 @@ public class InventoryItemEditor : EditorWindow {
 		// There is no overwrite protection here!
 		// There is No "Are you sure you want to overwrite your existing object?" if it exists.
 		// This should probably get a string from the user to create a new name and pass it ...
+		
+		//Chooses the inventory and sets the viewIndex value
 		viewIndex = 1;
+		//Creates a new inventoryItemList Scriptable Object
 		inventoryItemList = CreateInventoryItemList.Create();
 		if (inventoryItemList) 
 		{
